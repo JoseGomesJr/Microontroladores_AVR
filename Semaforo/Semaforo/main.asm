@@ -97,6 +97,7 @@ reset:
 	lds r25, TIMSK1
 	sbr r25, 1 <<OCIE1A
 	sts TIMSK1, r25
+	;------FIM SETUP TIMER------
 
 	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
 	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
@@ -110,10 +111,13 @@ reset:
 	
 	;habilita as interrupçoes globais
 	sei
-	;------FIM SETUP TIMER------
+	
 
 	s1:
 		ldi tempo_estado, 22
+		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+	
 
 	loop_s1:
 		ldi	saida, estado_s1
