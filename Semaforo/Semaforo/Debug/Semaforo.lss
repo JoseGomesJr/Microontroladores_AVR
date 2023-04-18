@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm Sat Apr 15 19:34:22 2023
+AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm Tue Apr 18 06:31:53 2023
 
 [builtin](2): Including file 'G:/avr\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
 [builtin](2): Including file 'G:/avr\7.0\Packs\atmel\ATmega_DFP\1.7.374\avrasm\inc\m328Pdef.inc'
@@ -988,11 +988,40 @@ AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_A
                                  .def dezena = r20	;definimos o registrador 20 como dezena (variável que vai armazenar o valor numérico a ser exibido no display de dezena)
                                  .def temp = r16
                                  .def saida = r21
-                                 .def loopCt=r17
+                                 .def loopCt = r17
                                  .def tempo_estado = r23
+                                 .def timerTmp = r25
                                  
                                  .cseg 				;flash
-000000 940c 000a                 jmp reset	
+000000 940c 002e                 jmp reset
+                                 .org OC1Aaddr
+000016 940c 0018                 jmp OCI1A_Interrupt
+                                 
+                                 
+                                 OCI1A_Interrupt:
+000018 939f                      	push r25
+000019 b79f                      	in r25, SREG
+00001a 939f                      	push r25
+                                 
+                                 	;tarefa da interrupção 
+00001b 957a                      	dec tempo_estado
+                                 	; A cada interrupção aumentamos o valor a ser exibido no display de unidade em 1
+00001c 9533                      	inc unidade
+                                 
+00001d 919f                      	pop r25
+00001e bf9f                      	out SREG, r25
+00001f 919f                      	pop r25
+                                 	;Caso o valor da unidade seja 10 teremos um desvio para a label overflow
+000020 323a                      	cpi unidade, 0b00101010
+000021 f009                      	breq overflow
+                                 
+000022 9518                      	reti  ;retornamos para a rotina principal
+                                 	overflow:
+                                 		;dentro do tratamento de overflow, faremos a unidade voltar a 0 e incrementamos o valor da dezena em 1
+000023 e230                      		ldi unidade, 0b00100000
+000024 9543                      		inc dezena	
+000025 9518                      		reti ;retornamos para a rotina principal
+                                 
                                  
                                  .equ estado_s1 = 0b00001111
                                  .equ estado_s2 = 0b00001110
@@ -1004,90 +1033,191 @@ AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_A
                                  
                                  
                                  .equ ClockMHz = 16
-                                 .equ DelayMs = 3000
+                                 .equ DelayMs = 1
+                                 
                                  Delay:
-000002 e972                      	ldi r23, byte3(ClockMHz * 1000 * DelayMs / 5)
-000003 e76c                      	ldi r22, high(ClockMHz * 1000 * DelayMs / 5)
-000004 e050                      	ldi r21, low(ClockMHz * 1000 * DelayMs / 5)
+000026 e0c0                      	ldi r28, byte3(ClockMHz * 1000 * DelayMs / 5)
+000027 e0bc                      	ldi r27, high(ClockMHz * 1000 * DelayMs / 5)
+000028 e8a0                      	ldi r26, low(ClockMHz * 1000 * DelayMs / 5)
                                  
-000005 5051                      	subi r21, 1
-000006 4060                      	sbci r22, 0
-000007 4070                      	sbci r23, 0
+000029 50a1                      	subi r26, 1
+00002a 40b0                      	sbci r27, 0
+00002b 40c0                      	sbci r28, 0
                                  
-000008 f7e0                      	brcc pc-3
+00002c f7e0                      	brcc pc-3
                                  			
-000009 9508                      	ret
+00002d 9508                      	ret
                                  
                                  reset:
+                                 	;------SETUP TIMER------
+                                 	;Stack initialization
+00002e ef9f                      	ldi timerTmp, low(RAMEND)
+00002f bf9d                      	out SPL, timerTmp
+000030 e098                      	ldi timerTmp, high(RAMEND)
+000031 bf9e                      	out SPH, timerTmp
                                  
-00000a e230                      	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-00000b e140                      	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+                                 
+                                 	;Velociade do clock
+                                 	#define CLOCK 16.0e6 
+                                 	;Tempo em segundos
+                                 	#define DELAY 1 
+                                 	;Valor do prescale (256) 
+                                 	.equ PRESCALE = 0b100 
+                                 	.equ PRESCALE_DIV = 256
+                                 	.equ WGM = 0b0100 ;Waveform generation mode: CTC
+                                 	;Condição para analisar se o top não ultrapassa o valor máxido de 65535
+                                 	.equ TOP = int(0.5 + ((CLOCK/PRESCALE_DIV)*DELAY))
+                                 	.if TOP > 65535
+                                 	.endif
+                                 
+000032 ef94                      	ldi timerTmp, high(TOP) ;initialize compare value (TOP)
+000033 9390 0089                 	sts OCR1AH, timerTmp
+000035 e294                      	ldi timerTmp, low(TOP)
+000036 9390 0088                 	sts OCR1AL, timerTmp
+000038 e090                      	ldi timerTmp, ((WGM&0b11) << WGM10)
+000039 9390 0080                 	sts TCCR1A, timerTmp
+00003b e09c                      	ldi timerTmp, ((WGM>> 2) << WGM12)|(PRESCALE << CS10)
+00003c 9390 0081                 	sts TCCR1B, timerTmp ;start counter
+                                 
+00003e 9190 006f                 	lds r25, TIMSK1
+000040 6092                      	sbr r25, 1 <<OCIE1A
+000041 9390 006f                 	sts TIMSK1, r25
+                                 
+000043 e230                      	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+000044 e140                      	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
                                  	;Definimos toda a PORTD como saída
-00000c ef0f                      	ldi temp, 0b11111111
-00000d b90a                      	out DDRD, temp
+000045 ef0f                      	ldi temp, 0b11111111
+000046 b90a                      	out DDRD, temp
                                  
                                  	;Definimos os 6 primeiros pinos de PORTB como saída
-00000e e30f                      	ldi temp, 0b00111111
-00000f b904                      	out DDRB, temp	
-                                 
-000010 e251                      	ldi	saida, 0b00100001
-000011 b955                      	out PORTB, saida
+000047 e30f                      	ldi temp, 0b00111111
+000048 b904                      	out DDRB, temp	
+                                 	
+                                 	;habilita as interrupçoes globais
+000049 9478                      	sei
+                                 	;------FIM SETUP TIMER------
                                  
                                  	s1:
-000012 e176                      		ldi tempo_estado, 22
+00004a e176                      		ldi tempo_estado, 22
+                                 
                                  	loop_s1:
-000013 e05f                      		ldi	saida, estado_s1
-000014 b95b                      		out PORTD, saida
+00004b e05f                      		ldi	saida, estado_s1
+00004c b95b                      		out PORTD, saida
                                  
-000015 dfec                      		rcall Delay
-                                 
+                                 		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+00004d b935                      		out PORTB, unidade
+00004e dfd7                      		rcall Delay
+00004f b945                      		out PORTB, dezena
+000050 dfd5                      		rcall Delay
+000051 3070                      		cpi tempo_estado, 0
+000052 f009                      		breq s2
+000053 cff7                      		rjmp loop_s1
                                  	s2:
-000016 e074                      		ldi tempo_estado, 4
+000054 e074                      		ldi tempo_estado, 4
+000055 e230                      		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+000056 e140                      		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
                                  	loop_s2:
-000017 e05e                      		ldi	saida, estado_s2
-000018 b95b                      		out PORTD, saida
+000057 e05e                      		ldi	saida, estado_s2
+000058 b95b                      		out PORTD, saida
                                  		
-000019 dfe8                      		rcall Delay
+                                 		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+000059 b935                      		out PORTB, unidade
+00005a dfcb                      		rcall Delay
+00005b b945                      		out PORTB, dezena
+00005c dfc9                      		rcall Delay
+                                 
+00005d 3070                      		cpi tempo_estado, 0
+00005e f009                      		breq s3
+00005f cff7                      		rjmp loop_s2
                                  	s3:
-00001a e373                      		ldi tempo_estado, 51
+000060 e373                      		ldi tempo_estado, 51
+000061 e230                      		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+000062 e140                      		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
                                  
                                  	loop_s3:
-00001b ec5c                      		ldi	saida, estado_s3
-00001c b95b                      		out PORTD, saida
+000063 ec5c                      		ldi	saida, estado_s3
+000064 b95b                      		out PORTD, saida
                                  		
-00001d dfe4                      		rcall Delay
+                                 		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+000065 b935                      		out PORTB, unidade
+000066 dfbf                      		rcall Delay
+000067 b945                      		out PORTB, dezena
+000068 dfbd                      		rcall Delay
+                                 
+000069 3070                      		cpi tempo_estado, 0
+00006a f009                      		breq s4
+00006b cff7                      		rjmp loop_s3
                                  	s4:
-00001e e074                      		ldi tempo_estado, 4
+00006c e074                      		ldi tempo_estado, 4
+00006d e230                      		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+00006e e140                      		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
                                  
                                  	loop_s4:
-00001f e454                      		ldi	saida, estado_s4
-000020 b95b                      		out PORTD, saida
+00006f e454                      		ldi	saida, estado_s4
+000070 b95b                      		out PORTD, saida
                                  		
-000021 dfe0                      		rcall Delay
+                                 		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+000071 b935                      		out PORTB, unidade
+000072 dfb3                      		rcall Delay
+000073 b945                      		out PORTB, dezena
+000074 dfb1                      		rcall Delay
+                                 
+000075 3070                      		cpi tempo_estado, 0
+000076 f009                      		breq s5
+000077 cff7                      		rjmp loop_s4
                                  	s5:
-000022 e179                      		ldi tempo_estado, 25
+000078 e179                      		ldi tempo_estado, 25
+000079 e230                      		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+00007a e140                      		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
                                  
                                  	loop_s5:
-000023 e350                      		ldi	saida, estado_s5
-000024 b95b                      		out PORTD, saida
+00007b e350                      		ldi	saida, estado_s5
+00007c b95b                      		out PORTD, saida
                                  		
-000025 dfdc                      		rcall Delay
+                                 		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+00007d b935                      		out PORTB, unidade
+00007e dfa7                      		rcall Delay
+00007f b945                      		out PORTB, dezena
+000080 dfa5                      		rcall Delay
+                                 
+000081 3070                      		cpi tempo_estado, 0
+000082 f009                      		breq s6
+000083 cff7                      		rjmp loop_s5
                                  	s6:
-000026 e074                      		ldi tempo_estado, 4
+000084 e074                      		ldi tempo_estado, 4
+000085 e230                      		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+000086 e140                      		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
                                  	loop_s6:
-000027 e150                      		ldi	saida, estado_s6
-000028 b95b                      		out PORTD, saida
+000087 e150                      		ldi	saida, estado_s6
+000088 b95b                      		out PORTD, saida
                                  		
-000029 dfd8                      		rcall Delay
+                                 		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+000089 b935                      		out PORTB, unidade
+00008a df9b                      		rcall Delay
+00008b b945                      		out PORTB, dezena
+00008c df99                      		rcall Delay
                                  
+00008d 3070                      		cpi tempo_estado, 0
+00008e f009                      		breq s7
+00008f cff7                      		rjmp loop_s6
                                  	s7:
-00002a e17f                      		ldi tempo_estado, 31
+000090 e17f                      		ldi tempo_estado, 31
+000091 e230                      		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+000092 e140                      		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
                                  	loop_s7:
-00002b e050                      		ldi	saida, estado_s7
-00002c b95b                      		out PORTD, saida
-                                 		
-00002d dfd4                      		rcall Delay
+000093 e050                      		ldi	saida, estado_s7
+000094 b95b                      		out PORTD, saida
                                  
+                                 		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+000095 b935                      		out PORTB, unidade
+000096 df8f                      		rcall Delay
+000097 b945                      		out PORTB, dezena
+000098 df8d                      		rcall Delay
+                                 
+000099 3070                      		cpi tempo_estado, 0
+00009a f009                      		breq reincia
+00009b cff7                      		rjmp loop_s7
+                                 reincia:
 
 
 RESOURCE USE INFORMATION
@@ -1107,37 +1237,37 @@ counted separately from r26..r31 here.
 "ATmega328P" register use summary:
 x  :   0 y  :   0 z  :   0 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 
 r5 :   0 r6 :   0 r7 :   0 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 
-r13:   0 r14:   0 r15:   0 r16:   4 r17:   0 r18:   0 r19:   1 r20:   1 
-r21:  18 r22:   2 r23:   9 r24:   0 r25:   0 r26:   0 r27:   0 r28:   0 
+r13:   0 r14:   0 r15:   0 r16:   4 r17:   0 r18:   0 r19:  17 r20:  15 
+r21:  14 r22:   0 r23:  15 r24:   0 r25:  21 r26:   2 r27:   2 r28:   2 
 r29:   0 r30:   0 r31:   0 
-Registers used: 6 out of 35 (17.1%)
+Registers used: 9 out of 35 (25.7%)
 
 "ATmega328P" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
-brcc  :   1 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
+brcc  :   1 brcs  :   0 break :   0 breq  :   8 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
 brne  :   0 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
 brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   0 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
 clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   0 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   1 
-ld    :   0 ldd   :   0 ldi   :  22 lds   :   0 lpm   :   0 lsl   :   0 
+cpi   :   8 cpse  :   0 dec   :   1 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   1 inc   :   2 jmp   :   2 
+ld    :   0 ldd   :   0 ldi   :  40 lds   :   1 lpm   :   0 lsl   :   0 
 lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  10 pop   :   0 
-push  :   0 rcall :   7 ret   :   1 reti  :   0 rjmp  :   1 rol   :   0 
+neg   :   0 nop   :   0 or    :   0 ori   :   0 out   :  26 pop   :   2 
+push  :   2 rcall :  14 ret   :   1 reti  :   2 rjmp  :   8 rol   :   0 
 ror   :   0 sbc   :   0 sbci  :   2 sbi   :   0 sbic  :   0 sbis  :   0 
-sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
-sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
-sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
+sbiw  :   0 sbr   :   1 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
+sei   :   1 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
+sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   5 
 sub   :   0 subi  :   1 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 9 out of 113 (8.0%)
+Instructions used: 21 out of 113 (18.6%)
 
 "ATmega328P" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00005e     94      0     94   32768   0.3%
+[.cseg] 0x000000 0x00013a    274      0    274   32768   0.8%
 [.dseg] 0x000100 0x000100      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 

@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm Sat Apr 15 19:34:22 2023
+AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm Tue Apr 18 06:31:53 2023
 
 
 EQU  SIGNATURE_000 0000001e
@@ -701,7 +701,10 @@ DEF  temp         r16
 DEF  saida        r21
 DEF  loopCt       r17
 DEF  tempo_estado r23
-CSEG reset        0000000a
+DEF  timerTmp     r25
+CSEG reset        0000002e
+CSEG OCI1A_Interrupt 00000018
+CSEG overflow     00000023
 EQU  estado_s1    0000000f
 EQU  estado_s2    0000000e
 EQU  estado_s3    000000cc
@@ -710,19 +713,24 @@ EQU  estado_s5    00000030
 EQU  estado_s6    00000010
 EQU  estado_s7    00000000
 EQU  ClockMHz     00000010
-EQU  DelayMs      00000bb8
-CSEG Delay        00000002
-CSEG s1           00000012
-CSEG loop_s1      00000013
-CSEG s2           00000016
-CSEG loop_s2      00000017
-CSEG s3           0000001a
-CSEG loop_s3      0000001b
-CSEG s4           0000001e
-CSEG loop_s4      0000001f
-CSEG s5           00000022
-CSEG loop_s5      00000023
-CSEG s6           00000026
-CSEG loop_s6      00000027
-CSEG s7           0000002a
-CSEG loop_s7      0000002b
+EQU  DelayMs      00000001
+CSEG Delay        00000026
+EQU  PRESCALE     00000004
+EQU  PRESCALE_DIV 00000100
+EQU  WGM          00000004
+EQU  TOP          0000f424
+CSEG s1           0000004a
+CSEG loop_s1      0000004b
+CSEG s2           00000054
+CSEG loop_s2      00000057
+CSEG s3           00000060
+CSEG loop_s3      00000063
+CSEG s4           0000006c
+CSEG loop_s4      0000006f
+CSEG s5           00000078
+CSEG loop_s5      0000007b
+CSEG s6           00000084
+CSEG loop_s6      00000087
+CSEG s7           00000090
+CSEG loop_s7      00000093
+CSEG reincia      0000009c

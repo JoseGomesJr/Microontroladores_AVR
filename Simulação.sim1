@@ -138,180 +138,186 @@
 
 <item itemtype="Node" CircId="Node-1400" mainComp="false" Pos="200,612" />
 
-<item itemtype="Connector" uid="connector-1494" startpinid="BJT-744-emiter" endpinid="Resistor-739-lPin" pointList="1008,432,1008,464,852,464,852,496" />
+<item itemtype="Node" CircId="Node-1489" mainComp="false" Pos="212,620" />
 
-<item itemtype="Connector" uid="connector-1495" startpinid="Resistor-739-rPin" endpinid="Led-734-lPin" pointList="884,496,884,492,916,492" />
+<item itemtype="Connector" uid="connector-1401" startpinid="BJT-744-emiter" endpinid="Resistor-739-lPin" pointList="1008,432,1008,464,852,464,852,496" />
 
-<item itemtype="Connector" uid="connector-1496" startpinid="Resistor-738-lPin" endpinid="Node-765-1" pointList="856,440,856,376" />
+<item itemtype="Connector" uid="connector-1402" startpinid="Resistor-739-rPin" endpinid="Led-734-lPin" pointList="884,496,884,492,916,492" />
 
-<item itemtype="Connector" uid="connector-1497" startpinid="Resistor-738-rPin" endpinid="Led-733-lPin" pointList="888,440,916,440,916,444" />
+<item itemtype="Connector" uid="connector-1403" startpinid="Resistor-738-lPin" endpinid="Node-765-1" pointList="856,440,856,376" />
 
-<item itemtype="Connector" uid="connector-1498" startpinid="Led-732-lPin" endpinid="Resistor-740-rPin" pointList="916,548,880,548" />
+<item itemtype="Connector" uid="connector-1404" startpinid="Resistor-738-rPin" endpinid="Led-733-lPin" pointList="888,440,916,440,916,444" />
 
-<item itemtype="Connector" uid="connector-1499" startpinid="Node-779-2" endpinid="Resistor-740-lPin" pointList="840,548,848,548" />
+<item itemtype="Connector" uid="connector-1405" startpinid="Led-732-lPin" endpinid="Resistor-740-rPin" pointList="916,548,880,548" />
 
-<item itemtype="Connector" uid="connector-1500" startpinid="Node-779-1" endpinid="Led-734-rPin" pointList="840,548,840,520,948,520,948,492" />
+<item itemtype="Connector" uid="connector-1406" startpinid="Node-779-2" endpinid="Resistor-740-lPin" pointList="840,548,848,548" />
 
-<item itemtype="Connector" uid="connector-1501" startpinid="Led-732-rPin" endpinid="Ground-777-Gnd" pointList="948,548,948,576,960,576" />
+<item itemtype="Connector" uid="connector-1407" startpinid="Node-779-1" endpinid="Led-734-rPin" pointList="840,548,840,520,948,520,948,492" />
 
-<item itemtype="Connector" uid="connector-1502" startpinid="Resistor-822-rPin" endpinid="Led-814-lPin" pointList="1116,512,1116,508,1148,508" />
+<item itemtype="Connector" uid="connector-1408" startpinid="Led-732-rPin" endpinid="Ground-777-Gnd" pointList="948,548,948,576,960,576" />
 
-<item itemtype="Connector" uid="connector-1503" startpinid="Led-818-lPin" endpinid="Resistor-815-rPin" pointList="1152,564,1112,564" />
+<item itemtype="Connector" uid="connector-1409" startpinid="Resistor-822-rPin" endpinid="Led-814-lPin" pointList="1116,512,1116,508,1148,508" />
 
-<item itemtype="Connector" uid="connector-1504" startpinid="Resistor-821-rPin" endpinid="Led-816-lPin" pointList="1120,456,1148,456,1148,460" />
+<item itemtype="Connector" uid="connector-1410" startpinid="Led-818-lPin" endpinid="Resistor-815-rPin" pointList="1152,564,1112,564" />
 
-<item itemtype="Connector" uid="connector-1505" startpinid="BJT-820-emiter" endpinid="Resistor-822-lPin" pointList="1240,448,1240,480,1084,480,1084,512" />
+<item itemtype="Connector" uid="connector-1411" startpinid="Resistor-821-rPin" endpinid="Led-816-lPin" pointList="1120,456,1148,456,1148,460" />
 
-<item itemtype="Connector" uid="connector-1506" startpinid="Led-818-rPin" endpinid="Ground-817-Gnd" pointList="1184,564,1184,592,1192,592" />
+<item itemtype="Connector" uid="connector-1412" startpinid="BJT-820-emiter" endpinid="Resistor-822-lPin" pointList="1240,448,1240,480,1084,480,1084,512" />
 
-<item itemtype="Connector" uid="connector-1507" startpinid="BJT-820-base" endpinid="Node-843-0" pointList="1216,432,1180,432" />
+<item itemtype="Connector" uid="connector-1413" startpinid="Led-818-rPin" endpinid="Ground-817-Gnd" pointList="1184,564,1184,592,1192,592" />
 
-<item itemtype="Connector" uid="connector-1508" startpinid="Node-843-2" endpinid="Led-816-rPin" pointList="1180,432,1180,460" />
+<item itemtype="Connector" uid="connector-1414" startpinid="BJT-820-base" endpinid="Node-843-0" pointList="1216,432,1180,432" />
 
-<item itemtype="Connector" uid="connector-1509" startpinid="Resistor-821-lPin" endpinid="Node-946-0" pointList="1088,456,1088,392,1152,392" />
+<item itemtype="Connector" uid="connector-1415" startpinid="Node-843-2" endpinid="Led-816-rPin" pointList="1180,432,1180,460" />
 
-<item itemtype="Connector" uid="connector-1510" startpinid="Node-765-2" endpinid="BJT-744-collector" pointList="856,376,1008,376,1008,400" />
+<item itemtype="Connector" uid="connector-1416" startpinid="Resistor-821-lPin" endpinid="Node-946-0" pointList="1088,456,1088,392,1152,392" />
 
-<item itemtype="Connector" uid="connector-1511" startpinid="Led-814-rPin" endpinid="Node-872-0" pointList="1180,508,1180,536,1072,536,1072,564" />
+<item itemtype="Connector" uid="connector-1417" startpinid="Node-765-2" endpinid="BJT-744-collector" pointList="856,376,1008,376,1008,400" />
 
-<item itemtype="Connector" uid="connector-1512" startpinid="Node-872-2" endpinid="Resistor-815-lPin" pointList="1072,564,1080,564" />
+<item itemtype="Connector" uid="connector-1418" startpinid="Led-814-rPin" endpinid="Node-872-0" pointList="1180,508,1180,536,1072,536,1072,564" />
 
-<item itemtype="Connector" uid="connector-1513" startpinid="Resistor-884-rPin" endpinid="Led-876-lPin" pointList="884,772,884,768,916,768" />
+<item itemtype="Connector" uid="connector-1419" startpinid="Node-872-2" endpinid="Resistor-815-lPin" pointList="1072,564,1080,564" />
 
-<item itemtype="Connector" uid="connector-1514" startpinid="Led-880-lPin" endpinid="Resistor-877-rPin" pointList="916,824,880,824" />
+<item itemtype="Connector" uid="connector-1420" startpinid="Resistor-884-rPin" endpinid="Led-876-lPin" pointList="884,772,884,768,916,768" />
 
-<item itemtype="Connector" uid="connector-1515" startpinid="Resistor-883-rPin" endpinid="Led-878-lPin" pointList="888,716,916,716,916,720" />
+<item itemtype="Connector" uid="connector-1421" startpinid="Led-880-lPin" endpinid="Resistor-877-rPin" pointList="916,824,880,824" />
 
-<item itemtype="Connector" uid="connector-1516" startpinid="BJT-882-emiter" endpinid="Resistor-884-lPin" pointList="1008,708,1008,740,852,740,852,772" />
+<item itemtype="Connector" uid="connector-1422" startpinid="Resistor-883-rPin" endpinid="Led-878-lPin" pointList="888,716,916,716,916,720" />
 
-<item itemtype="Connector" uid="connector-1517" startpinid="Led-880-rPin" endpinid="Ground-879-Gnd" pointList="948,824,948,852,960,852" />
+<item itemtype="Connector" uid="connector-1423" startpinid="BJT-882-emiter" endpinid="Resistor-884-lPin" pointList="1008,708,1008,740,852,740,852,772" />
 
-<item itemtype="Connector" uid="connector-1518" startpinid="Resistor-883-lPin" endpinid="Node-942-0" pointList="856,716,856,652" />
+<item itemtype="Connector" uid="connector-1424" startpinid="Led-880-rPin" endpinid="Ground-879-Gnd" pointList="948,824,948,852,960,852" />
 
-<item itemtype="Connector" uid="connector-1519" startpinid="Led-876-rPin" endpinid="Node-903-0" pointList="948,768,948,796,840,796,840,824" />
+<item itemtype="Connector" uid="connector-1425" startpinid="Resistor-883-lPin" endpinid="Node-942-0" pointList="856,716,856,652" />
 
-<item itemtype="Connector" uid="connector-1520" startpinid="BJT-882-base" endpinid="Node-900-0" pointList="984,692,948,692" />
+<item itemtype="Connector" uid="connector-1426" startpinid="Led-876-rPin" endpinid="Node-903-0" pointList="948,768,948,796,840,796,840,824" />
 
-<item itemtype="Connector" uid="connector-1521" startpinid="Node-900-2" endpinid="Led-878-rPin" pointList="948,692,948,720" />
+<item itemtype="Connector" uid="connector-1427" startpinid="BJT-882-base" endpinid="Node-900-0" pointList="984,692,948,692" />
 
-<item itemtype="Connector" uid="connector-1522" startpinid="Node-903-2" endpinid="Resistor-877-lPin" pointList="840,824,848,824" />
+<item itemtype="Connector" uid="connector-1428" startpinid="Node-900-2" endpinid="Led-878-rPin" pointList="948,692,948,720" />
 
-<item itemtype="Connector" uid="connector-1523" startpinid="Resistor-915-rPin" endpinid="Led-907-lPin" pointList="1120,768,1120,764,1152,764" />
+<item itemtype="Connector" uid="connector-1429" startpinid="Node-903-2" endpinid="Resistor-877-lPin" pointList="840,824,848,824" />
 
-<item itemtype="Connector" uid="connector-1524" startpinid="Led-911-lPin" endpinid="Resistor-908-rPin" pointList="1152,820,1116,820" />
+<item itemtype="Connector" uid="connector-1430" startpinid="Resistor-915-rPin" endpinid="Led-907-lPin" pointList="1120,768,1120,764,1152,764" />
 
-<item itemtype="Connector" uid="connector-1525" startpinid="Resistor-914-rPin" endpinid="Led-909-lPin" pointList="1124,712,1152,712,1152,716" />
+<item itemtype="Connector" uid="connector-1431" startpinid="Led-911-lPin" endpinid="Resistor-908-rPin" pointList="1152,820,1116,820" />
 
-<item itemtype="Connector" uid="connector-1526" startpinid="BJT-913-emiter" endpinid="Resistor-915-lPin" pointList="1244,704,1244,736,1088,736,1088,768" />
+<item itemtype="Connector" uid="connector-1432" startpinid="Resistor-914-rPin" endpinid="Led-909-lPin" pointList="1124,712,1152,712,1152,716" />
 
-<item itemtype="Connector" uid="connector-1527" startpinid="Led-911-rPin" endpinid="Ground-910-Gnd" pointList="1184,820,1184,848,1196,848" />
+<item itemtype="Connector" uid="connector-1433" startpinid="BJT-913-emiter" endpinid="Resistor-915-lPin" pointList="1244,704,1244,736,1088,736,1088,768" />
 
-<item itemtype="Connector" uid="connector-1528" startpinid="Led-907-rPin" endpinid="Node-937-0" pointList="1184,764,1184,792,1076,792" />
+<item itemtype="Connector" uid="connector-1434" startpinid="Led-911-rPin" endpinid="Ground-910-Gnd" pointList="1184,820,1184,848,1196,848" />
 
-<item itemtype="Connector" uid="connector-1529" startpinid="BJT-913-base" endpinid="Node-934-0" pointList="1220,688,1184,688" />
+<item itemtype="Connector" uid="connector-1435" startpinid="Led-907-rPin" endpinid="Node-937-0" pointList="1184,764,1184,792,1076,792" />
 
-<item itemtype="Connector" uid="connector-1530" startpinid="Resistor-914-lPin" endpinid="Node-950-0" pointList="1092,712,1092,648" />
+<item itemtype="Connector" uid="connector-1436" startpinid="BJT-913-base" endpinid="Node-934-0" pointList="1220,688,1184,688" />
 
-<item itemtype="Connector" uid="connector-1531" startpinid="Node-934-2" endpinid="Led-909-rPin" pointList="1184,688,1184,716" />
+<item itemtype="Connector" uid="connector-1437" startpinid="Resistor-914-lPin" endpinid="Node-950-0" pointList="1092,712,1092,648" />
 
-<item itemtype="Connector" uid="connector-1532" startpinid="Node-937-2" endpinid="Resistor-908-lPin" pointList="1076,792,1076,820,1084,820" />
+<item itemtype="Connector" uid="connector-1438" startpinid="Node-934-2" endpinid="Led-909-rPin" pointList="1184,688,1184,716" />
 
-<item itemtype="Connector" uid="connector-1533" startpinid="Rail-940-outnod" endpinid="Node-942-1" pointList="772,656,856,656,856,652" />
+<item itemtype="Connector" uid="connector-1439" startpinid="Node-937-2" endpinid="Resistor-908-lPin" pointList="1076,792,1076,820,1084,820" />
 
-<item itemtype="Connector" uid="connector-1534" startpinid="Node-942-2" endpinid="BJT-882-collector" pointList="856,652,1008,652,1008,676" />
+<item itemtype="Connector" uid="connector-1440" startpinid="Rail-940-outnod" endpinid="Node-942-1" pointList="772,656,856,656,856,652" />
 
-<item itemtype="Connector" uid="connector-1535" startpinid="Rail-944-outnod" endpinid="Node-946-1" pointList="1148,324,1148,392,1152,392" />
+<item itemtype="Connector" uid="connector-1441" startpinid="Node-942-2" endpinid="BJT-882-collector" pointList="856,652,1008,652,1008,676" />
 
-<item itemtype="Connector" uid="connector-1536" startpinid="Node-946-2" endpinid="BJT-820-collector" pointList="1152,392,1240,392,1240,416" />
+<item itemtype="Connector" uid="connector-1442" startpinid="Rail-944-outnod" endpinid="Node-946-1" pointList="1148,324,1148,392,1152,392" />
 
-<item itemtype="Connector" uid="connector-1537" startpinid="Rail-948-outnod" endpinid="Node-950-1" pointList="1052,656,1092,656,1092,648" />
+<item itemtype="Connector" uid="connector-1443" startpinid="Node-946-2" endpinid="BJT-820-collector" pointList="1152,392,1240,392,1240,416" />
 
-<item itemtype="Connector" uid="connector-1538" startpinid="Node-950-2" endpinid="BJT-913-collector" pointList="1092,648,1244,648,1244,672" />
+<item itemtype="Connector" uid="connector-1444" startpinid="Rail-948-outnod" endpinid="Node-950-1" pointList="1052,656,1092,656,1092,648" />
 
-<item itemtype="Connector" uid="connector-1539" startpinid="Ground-979-Gnd" endpinid="Node-1055-0" pointList="328,736,328,732" />
+<item itemtype="Connector" uid="connector-1445" startpinid="Node-950-2" endpinid="BJT-913-collector" pointList="1092,648,1244,648,1244,672" />
 
-<item itemtype="Connector" uid="connector-1540" startpinid="Resistor-1048-rPin" endpinid="BJT-976-collector" pointList="328,680,328,692" />
+<item itemtype="Connector" uid="connector-1446" startpinid="Ground-979-Gnd" endpinid="Node-1055-0" pointList="328,736,328,732" />
 
-<item itemtype="Connector" uid="connector-1541" startpinid="Resistor-1048-lPin" endpinid="Seven Segment-971-pin_commona" pointList="328,648,328,624" />
+<item itemtype="Connector" uid="connector-1447" startpinid="Resistor-1048-rPin" endpinid="BJT-976-collector" pointList="328,680,328,692" />
 
-<item itemtype="Connector" uid="connector-1542" startpinid="Rail-347-outnod" endpinid="Node-765-0" pointList="664,376,856,376" />
+<item itemtype="Connector" uid="connector-1448" startpinid="Resistor-1048-lPin" endpinid="Seven Segment-971-pin_commona" pointList="328,648,328,624" />
 
-<item itemtype="Connector" uid="connector-1543" startpinid="Resistor-1051-lPin" endpinid="Seven Segment-972-pin_commona" pointList="256,644,256,628" />
+<item itemtype="Connector" uid="connector-1449" startpinid="Rail-347-outnod" endpinid="Node-765-0" pointList="664,376,856,376" />
 
-<item itemtype="Connector" uid="connector-1544" startpinid="Resistor-1051-rPin" endpinid="BJT-974-collector" pointList="256,676,256,684" />
+<item itemtype="Connector" uid="connector-1450" startpinid="Resistor-1051-lPin" endpinid="Seven Segment-972-pin_commona" pointList="256,644,256,628" />
 
-<item itemtype="Connector" uid="connector-1545" startpinid="BJT-974-emiter" endpinid="Node-1055-1" pointList="256,716,256,732,328,732" />
+<item itemtype="Connector" uid="connector-1451" startpinid="Resistor-1051-rPin" endpinid="BJT-974-collector" pointList="256,676,256,684" />
 
-<item itemtype="Connector" uid="connector-1546" startpinid="Node-1055-2" endpinid="BJT-976-emiter" pointList="328,732,328,724" />
+<item itemtype="Connector" uid="connector-1452" startpinid="BJT-974-emiter" endpinid="Node-1055-1" pointList="256,716,256,732,328,732" />
 
-<item itemtype="Connector" uid="connector-1547" startpinid="Uno-2-0" endpinid="Node-779-0" pointList="496,596,404,596,404,548,840,548" />
+<item itemtype="Connector" uid="connector-1453" startpinid="Node-1055-2" endpinid="BJT-976-emiter" pointList="328,732,328,724" />
 
-<item itemtype="Connector" uid="connector-1548" startpinid="BJT-744-base" endpinid="Node-1209-0" pointList="984,416,948,416" />
+<item itemtype="Connector" uid="connector-1454" startpinid="Uno-2-0" endpinid="Node-779-0" pointList="496,596,404,596,404,548,840,548" />
 
-<item itemtype="Connector" uid="connector-1549" startpinid="Node-1209-2" endpinid="Led-733-rPin" pointList="948,416,948,444" />
+<item itemtype="Connector" uid="connector-1455" startpinid="BJT-744-base" endpinid="Node-1209-0" pointList="984,416,948,416" />
 
-<item itemtype="Connector" uid="connector-1550" startpinid="Node-843-1" endpinid="Uno-2-2" pointList="1180,432,1052,432,1052,348,376,348,376,612,496,612" />
+<item itemtype="Connector" uid="connector-1456" startpinid="Node-1209-2" endpinid="Led-733-rPin" pointList="948,416,948,444" />
 
-<item itemtype="Connector" uid="connector-1551" startpinid="Node-872-1" endpinid="Uno-2-3" pointList="1072,564,1064,564,1064,328,360,328,360,620,496,620" />
+<item itemtype="Connector" uid="connector-1457" startpinid="Node-843-1" endpinid="Uno-2-2" pointList="1180,432,1052,432,1052,348,376,348,376,612,496,612" />
 
-<item itemtype="Connector" uid="connector-1552" startpinid="Node-900-1" endpinid="Uno-2-4" pointList="948,692,812,692,812,832,416,832,416,628,496,628" />
+<item itemtype="Connector" uid="connector-1458" startpinid="Node-872-1" endpinid="Uno-2-3" pointList="1072,564,1064,564,1064,328,360,328,360,620,496,620" />
 
-<item itemtype="Connector" uid="connector-1553" startpinid="Node-903-1" endpinid="Uno-2-5" pointList="840,824,428,824,428,636,496,636" />
+<item itemtype="Connector" uid="connector-1459" startpinid="Node-900-1" endpinid="Uno-2-4" pointList="948,692,812,692,812,832,416,832,416,628,496,628" />
 
-<item itemtype="Connector" uid="connector-1554" startpinid="Node-934-1" endpinid="Uno-2-6" pointList="1184,688,1036,688,1036,884,440,884,440,644,496,644" />
+<item itemtype="Connector" uid="connector-1460" startpinid="Node-903-1" endpinid="Uno-2-5" pointList="840,824,428,824,428,636,496,636" />
 
-<item itemtype="Connector" uid="connector-1555" startpinid="Node-937-1" endpinid="Uno-2-7" pointList="1076,792,1076,900,452,900,452,652,496,652" />
+<item itemtype="Connector" uid="connector-1461" startpinid="Node-934-1" endpinid="Uno-2-6" pointList="1184,688,1036,688,1036,884,440,884,440,644,496,644" />
 
-<item itemtype="Connector" uid="connector-1557" startpinid="BcdTo7S-960-in0" endpinid="Uno-2-8" pointList="216,804,388,804,388,668,496,668" />
+<item itemtype="Connector" uid="connector-1462" startpinid="Node-937-1" endpinid="Uno-2-7" pointList="1076,792,1076,900,452,900,452,652,496,652" />
 
-<item itemtype="Connector" uid="connector-1558" startpinid="BcdTo7S-960-in1" endpinid="Uno-2-9" pointList="216,796,400,796,400,676,496,676" />
+<item itemtype="Connector" uid="connector-1463" startpinid="BcdTo7S-960-in0" endpinid="Uno-2-8" pointList="216,804,388,804,388,668,496,668" />
 
-<item itemtype="Connector" uid="connector-1559" startpinid="BcdTo7S-960-in2" endpinid="Uno-2-10" pointList="216,788,408,788,408,684,496,684" />
+<item itemtype="Connector" uid="connector-1464" startpinid="BcdTo7S-960-in1" endpinid="Uno-2-9" pointList="216,796,400,796,400,676,496,676" />
 
-<item itemtype="Connector" uid="connector-1560" startpinid="BcdTo7S-960-in3" endpinid="Uno-2-11" pointList="216,780,460,780,460,692,496,692" />
+<item itemtype="Connector" uid="connector-1465" startpinid="BcdTo7S-960-in2" endpinid="Uno-2-10" pointList="216,788,408,788,408,684,496,684" />
 
-<item itemtype="Connector" uid="connector-1561" startpinid="BJT-976-base" endpinid="Uno-2-12" pointList="304,708,304,760,372,760,372,700,496,700" />
+<item itemtype="Connector" uid="connector-1466" startpinid="BcdTo7S-960-in3" endpinid="Uno-2-11" pointList="216,780,460,780,460,692,496,692" />
 
-<item itemtype="Connector" uid="connector-1562" startpinid="BJT-974-base" endpinid="Uno-2-13" pointList="232,700,232,772,380,772,380,708,496,708" />
+<item itemtype="Connector" uid="connector-1467" startpinid="BJT-976-base" endpinid="Uno-2-12" pointList="304,708,304,760,372,760,372,700,496,700" />
 
-<item itemtype="Connector" uid="connector-1563" startpinid="BcdTo7S-960-out4" endpinid="Node-1397-0" pointList="168,788,132,788,132,604,188,604" />
+<item itemtype="Connector" uid="connector-1468" startpinid="BJT-974-base" endpinid="Uno-2-13" pointList="232,700,232,772,380,772,380,708,496,708" />
 
-<item itemtype="Connector" uid="connector-1564" startpinid="BcdTo7S-960-out5" endpinid="Node-1400-0" pointList="168,780,140,780,140,612,200,612" />
+<item itemtype="Connector" uid="connector-1469" startpinid="BcdTo7S-960-out4" endpinid="Node-1397-0" pointList="168,788,132,788,132,604,188,604" />
 
-<item itemtype="Connector" uid="connector-1565" startpinid="BcdTo7S-960-out0" endpinid="Node-1382-0" pointList="168,820,100,820,100,572,224,572" />
+<item itemtype="Connector" uid="connector-1470" startpinid="BcdTo7S-960-out5" endpinid="Node-1400-0" pointList="168,780,140,780,140,612,200,612" />
 
-<item itemtype="Connector" uid="connector-1566" startpinid="BcdTo7S-960-out3" endpinid="Node-1394-0" pointList="168,796,124,796,124,596,188,596" />
+<item itemtype="Connector" uid="connector-1471" startpinid="BcdTo7S-960-out0" endpinid="Node-1382-0" pointList="168,820,100,820,100,572,224,572" />
 
-<item itemtype="Connector" uid="connector-1567" startpinid="BcdTo7S-960-out2" endpinid="Node-1391-0" pointList="168,804,116,804,116,588,196,588" />
+<item itemtype="Connector" uid="connector-1472" startpinid="BcdTo7S-960-out3" endpinid="Node-1394-0" pointList="168,796,124,796,124,596,188,596" />
 
-<item itemtype="Connector" uid="connector-1568" startpinid="Node-1382-2" endpinid="Seven Segment-972-pin_a" pointList="224,572,224,572" />
+<item itemtype="Connector" uid="connector-1473" startpinid="BcdTo7S-960-out2" endpinid="Node-1391-0" pointList="168,804,116,804,116,588,196,588" />
 
-<item itemtype="Connector" uid="connector-1569" startpinid="Node-1382-1" endpinid="Seven Segment-971-pin_a" pointList="224,572,224,496,296,496,296,568" />
+<item itemtype="Connector" uid="connector-1474" startpinid="Node-1382-2" endpinid="Seven Segment-972-pin_a" pointList="224,572,224,572" />
 
-<item itemtype="Connector" uid="connector-1570" startpinid="Node-1385-2" endpinid="Seven Segment-972-pin_b" pointList="208,580,224,580" />
+<item itemtype="Connector" uid="connector-1475" startpinid="Node-1382-1" endpinid="Seven Segment-971-pin_a" pointList="224,572,224,496,296,496,296,568" />
 
-<item itemtype="Connector" uid="connector-1571" startpinid="Node-1385-1" endpinid="Seven Segment-971-pin_b" pointList="208,580,208,500,292,500,292,576,296,576" />
+<item itemtype="Connector" uid="connector-1476" startpinid="Node-1385-2" endpinid="Seven Segment-972-pin_b" pointList="208,580,224,580" />
 
-<item itemtype="Connector" uid="connector-1572" startpinid="BcdTo7S-960-out1" endpinid="Node-1385-0" pointList="168,812,108,812,108,580,208,580" />
+<item itemtype="Connector" uid="connector-1477" startpinid="Node-1385-1" endpinid="Seven Segment-971-pin_b" pointList="208,580,208,500,292,500,292,576,296,576" />
 
-<item itemtype="Connector" uid="connector-1573" startpinid="Node-1391-2" endpinid="Seven Segment-972-pin_c" pointList="196,588,224,588" />
+<item itemtype="Connector" uid="connector-1478" startpinid="BcdTo7S-960-out1" endpinid="Node-1385-0" pointList="168,812,108,812,108,580,208,580" />
 
-<item itemtype="Connector" uid="connector-1574" startpinid="Node-1391-1" endpinid="Seven Segment-971-pin_c" pointList="196,588,196,508,284,508,284,584,296,584" />
+<item itemtype="Connector" uid="connector-1479" startpinid="Node-1391-2" endpinid="Seven Segment-972-pin_c" pointList="196,588,224,588" />
 
-<item itemtype="Connector" uid="connector-1575" startpinid="Node-1394-2" endpinid="Seven Segment-972-pin_d" pointList="188,596,224,596" />
+<item itemtype="Connector" uid="connector-1480" startpinid="Node-1391-1" endpinid="Seven Segment-971-pin_c" pointList="196,588,196,508,284,508,284,584,296,584" />
 
-<item itemtype="Connector" uid="connector-1576" startpinid="Node-1394-1" endpinid="Seven Segment-971-pin_d" pointList="188,596,188,516,276,516,276,592,296,592" />
+<item itemtype="Connector" uid="connector-1481" startpinid="Node-1394-2" endpinid="Seven Segment-972-pin_d" pointList="188,596,224,596" />
 
-<item itemtype="Connector" uid="connector-1577" startpinid="Node-1397-2" endpinid="Seven Segment-972-pin_e" pointList="188,604,224,604" />
+<item itemtype="Connector" uid="connector-1482" startpinid="Node-1394-1" endpinid="Seven Segment-971-pin_d" pointList="188,596,188,516,276,516,276,592,296,592" />
 
-<item itemtype="Connector" uid="connector-1578" startpinid="Node-1397-1" endpinid="Seven Segment-971-pin_e" pointList="188,604,188,632,276,632,276,600,296,600" />
+<item itemtype="Connector" uid="connector-1483" startpinid="Node-1397-2" endpinid="Seven Segment-972-pin_e" pointList="188,604,224,604" />
 
-<item itemtype="Connector" uid="connector-1579" startpinid="Node-1400-2" endpinid="Seven Segment-972-pin_f" pointList="200,612,224,612" />
+<item itemtype="Connector" uid="connector-1484" startpinid="Node-1397-1" endpinid="Seven Segment-971-pin_e" pointList="188,604,188,632,276,632,276,600,296,600" />
 
-<item itemtype="Connector" uid="connector-1580" startpinid="Node-1400-1" endpinid="Seven Segment-971-pin_f" pointList="200,612,200,636,284,636,284,608,296,608" />
+<item itemtype="Connector" uid="connector-1485" startpinid="Node-1400-2" endpinid="Seven Segment-972-pin_f" pointList="200,612,224,612" />
 
-<item itemtype="Connector" uid="connector-1581" startpinid="BcdTo7S-960-out6" endpinid="Seven Segment-972-pin_g" pointList="168,772,148,772,148,620,224,620" />
+<item itemtype="Connector" uid="connector-1486" startpinid="Node-1400-1" endpinid="Seven Segment-971-pin_f" pointList="200,612,200,636,284,636,284,608,296,608" />
 
-<item itemtype="Connector" uid="connector-1556" startpinid="Node-1209-1" endpinid="Uno-2-1" pointList="948,416,384,416,384,604,496,604" />
+<item itemtype="Connector" uid="connector-1487" startpinid="BcdTo7S-960-out6" endpinid="Node-1489-0" pointList="168,772,148,772,148,620,212,620" />
+
+<item itemtype="Connector" uid="connector-1488" startpinid="Node-1209-1" endpinid="Uno-2-1" pointList="948,416,384,416,384,604,496,604" />
+
+<item itemtype="Connector" uid="Connector-1490" startpinid="Node-1489-2" endpinid="Seven Segment-972-pin_g" pointList="212,620,224,620" />
+
+<item itemtype="Connector" uid="Connector-1491" startpinid="Node-1489-1" endpinid="Seven Segment-971-pin_g" pointList="212,620,212,640,296,640,296,616" />
 
 </circuit>
