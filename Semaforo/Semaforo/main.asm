@@ -2,7 +2,6 @@
 .def dezena = r20	;definimos o registrador 20 como dezena (variável que vai armazenar o valor numérico a ser exibido no display de dezena)
 .def temp = r16 ;registrador temporário
 .def saida = r21 ;saída para os leds
-.def loopCt = r17
 .def tempo_estado = r23 ;armazena o tempo de duração de cada estado
 
 .cseg ;flash
@@ -40,6 +39,11 @@ OCI1A_Interrupt:
 		reti ;retornamos para a rotina principal
 
 ;Sequência de bits dos leds de cada estado
+; O estado dos leds é representado com 2 bits
+; O estado pode ser vemelho: 00, amarelo: 10 para o semaforo A, e 01 para os outros, e verde: 11;
+; a sequencia de bits de cada semaforo é a sequinte: 
+;	D	 C	  B    A
+;  00 | 00 | 00 | 00 |
 .equ estado_s1 = 0b00001111
 .equ estado_s2 = 0b00001110
 .equ estado_s3 = 0b11001100
@@ -152,8 +156,8 @@ s2:
 
 loop_s2:
 	ldi	saida, estado_s2
-	out PORTD, saida
-		
+	out PORTD, saida 
+	
 	out PORTB, unidade
 	rcall Delay
 	out PORTB, dezena

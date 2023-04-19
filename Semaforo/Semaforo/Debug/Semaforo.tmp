@@ -22,24 +22,24 @@
   <FILE>Semaforo.lss</FILE>
  </OUTPUT_FILES>
  <LABELS>
-  <reset><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>65</LINE></reset>
-  <OCI1A_Interrupt><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>15</LINE></OCI1A_Interrupt>
-  <overflow><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>33</LINE></overflow>
-  <Delay><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>52</LINE></Delay>
-  <s1><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>115</LINE></s1>
-  <loop_s1><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>118</LINE></loop_s1>
-  <s2><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>130</LINE></s2>
-  <loop_s2><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>134</LINE></loop_s2>
-  <s3><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>147</LINE></s3>
-  <loop_s3><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>152</LINE></loop_s3>
-  <s4><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>165</LINE></s4>
-  <loop_s4><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>170</LINE></loop_s4>
-  <s5><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>183</LINE></s5>
-  <loop_s5><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>188</LINE></loop_s5>
-  <s6><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>201</LINE></s6>
-  <loop_s6><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>205</LINE></loop_s6>
-  <s7><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>218</LINE></s7>
-  <loop_s7><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>222</LINE></loop_s7>
-  <reincia><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>235</LINE></reincia>
+  <reset><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>71</LINE></reset>
+  <OCI1A_Interrupt><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>17</LINE></OCI1A_Interrupt>
+  <overflow><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>35</LINE></overflow>
+  <Delay><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>58</LINE></Delay>
+  <s1><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>134</LINE></s1>
+  <loop_s1><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>139</LINE></loop_s1>
+  <s2><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>152</LINE></s2>
+  <loop_s2><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>157</LINE></loop_s2>
+  <s3><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>170</LINE></s3>
+  <loop_s3><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>175</LINE></loop_s3>
+  <s4><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>188</LINE></s4>
+  <loop_s4><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>193</LINE></loop_s4>
+  <s5><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>206</LINE></s5>
+  <loop_s5><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>211</LINE></loop_s5>
+  <s6><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>224</LINE></s6>
+  <loop_s6><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>228</LINE></loop_s6>
+  <s7><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>241</LINE></s7>
+  <loop_s7><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>246</LINE></loop_s7>
+  <reincia><FILE>C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm</FILE><LINE>259</LINE></reincia>
  </LABELS>
 </ASSEMBLER_INFO>

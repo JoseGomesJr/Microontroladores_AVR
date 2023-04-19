@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm Tue Apr 18 06:31:53 2023
+AVRASM ver. 2.2.8  C:\Users\josej\OneDrive\Documentos\GitHub\Microontroladores_AVR\Semaforo\Semaforo\main.asm Wed Apr 19 12:25:19 2023
 
 
 EQU  SIGNATURE_000 0000001e
@@ -699,9 +699,7 @@ DEF  unidade      r19
 DEF  dezena       r20
 DEF  temp         r16
 DEF  saida        r21
-DEF  loopCt       r17
 DEF  tempo_estado r23
-DEF  timerTmp     r25
 CSEG reset        0000002e
 CSEG OCI1A_Interrupt 00000018
 CSEG overflow     00000023
@@ -720,17 +718,17 @@ EQU  PRESCALE_DIV 00000100
 EQU  WGM          00000004
 EQU  TOP          0000f424
 CSEG s1           0000004a
-CSEG loop_s1      0000004b
-CSEG s2           00000054
-CSEG loop_s2      00000057
-CSEG s3           00000060
-CSEG loop_s3      00000063
-CSEG s4           0000006c
-CSEG loop_s4      0000006f
-CSEG s5           00000078
-CSEG loop_s5      0000007b
-CSEG s6           00000084
-CSEG loop_s6      00000087
-CSEG s7           00000090
-CSEG loop_s7      00000093
-CSEG reincia      0000009c
+CSEG loop_s1      0000004d
+CSEG s2           00000056
+CSEG loop_s2      00000059
+CSEG s3           00000062
+CSEG loop_s3      00000065
+CSEG s4           0000006e
+CSEG loop_s4      00000071
+CSEG s5           0000007a
+CSEG loop_s5      0000007d
+CSEG s6           00000086
+CSEG loop_s6      00000089
+CSEG s7           00000092
+CSEG loop_s7      00000095
+CSEG reincia      0000009e
