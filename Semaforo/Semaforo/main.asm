@@ -7,17 +7,22 @@
 .def timerTmp = r25
 
 .cseg 				;flash
+
+;Definição do vetor de interrupção
+;Minuto 6:01 do vídeo
 jmp reset
 .org OC1Aaddr
 jmp OCI1A_Interrupt
 
+;Todo match é um overflow, e a partir disso a interrupção é gerada
+;tarefa da interrupção (ISR) - Funciona salvando o SREG, restaurando o SREG e retorna para a rotina principal com RETI
 
 OCI1A_Interrupt:
 	push r25
 	in r25, SREG
 	push r25
 
-	;tarefa da interrupção 
+	;Decremento no tempo do estado atual a cada interrupção de 1s
 	dec tempo_estado
 	; A cada interrupção aumentamos o valor a ser exibido no display de unidade em 1
 	inc unidade
@@ -78,23 +83,36 @@ reset:
 	;Valor do prescale (256) 
 	.equ PRESCALE = 0b100 
 	.equ PRESCALE_DIV = 256
-	.equ WGM = 0b0100 ;Waveform generation mode: CTC
+	;Gerador de forma de onda CTC (Clear time and compare, modo 4)
+	.equ WGM = 0b0100 ;
 	;Condição para analisar se o top não ultrapassa o valor máxido de 65535
 	.equ TOP = int(0.5 + ((CLOCK/PRESCALE_DIV)*DELAY))
 	.if TOP > 65535
 	.error "TOP is out of range"
 	.endif
 
-	ldi timerTmp, high(TOP) ;initialize compare value (TOP)
+	;Configuração do TOP - Carrega o valor do TOP em OCR1A 16 bit
+
+	;Alocando os bits mais significativos 
+	ldi timerTmp, high(TOP)  
 	sts OCR1AH, timerTmp
+
+	;Alocando os bits menos significativos 
 	ldi timerTmp, low(TOP)
 	sts OCR1AL, timerTmp
-	ldi timerTmp, ((WGM&0b11) << WGM10)
-	sts TCCR1A, timerTmp
-	ldi timerTmp, ((WGM>> 2) << WGM12)|(PRESCALE << CS10)
-	sts TCCR1B, timerTmp ;start counter
 
+	;O WGM é responsável pelo modo de operação do timer (Modo 0, modo 4, etc)
+	;Configuração do WGM - Coloca o valor de WGM no TCCR1A e TCCR1B
+	ldi timerTmp, ((WGM&0b11) << WGM10) ;Carrega os 2 bits menos significativos
+	sts TCCR1A, timerTmp
+	ldi timerTmp, ((WGM>> 2) << WGM12)|(PRESCALE << CS10) ;Carrega os 2 bits mais significativos
+	;Inicia o counter
+	sts TCCR1B, timerTmp
+
+	;Habilita interrupções do comparador no canal A (Interrupção específica)
+	;Minuto 4:07 do vídeo
 	lds r25, TIMSK1
+	;SBR Faz a troca do bit, sem alterar os outros bits
 	sbr r25, 1 <<OCIE1A
 	sts TIMSK1, r25
 	;------FIM SETUP TIMER------
