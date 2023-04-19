@@ -2,7 +2,6 @@
 .def dezena = r20	;definimos o registrador 20 como dezena (variável que vai armazenar o valor numérico a ser exibido no display de dezena)
 .def temp = r16 ;registrador temporário
 .def saida = r21 ;saída para os leds
-.def loopCt = r17
 .def tempo_estado = r23 ;armazena o tempo de duração de cada estado
 
 .cseg ;flash
