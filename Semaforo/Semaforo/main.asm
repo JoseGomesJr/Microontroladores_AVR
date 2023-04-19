@@ -1,5 +1,5 @@
-.def unidade = r19  ;definimos o registrador 19 como unidade (variável que vai armazenar o valor numérico a ser exibido no display de unidade)
-.def dezena = r20	;definimos o registrador 20 como dezena (variável que vai armazenar o valor numérico a ser exibido no display de dezena)
+.def unidade = r19  ;definimos o registrador 19 como unidade (variÃ¡vel que vai armazenar o valor numÃ©rico a ser exibido no display de unidade)
+.def dezena = r20	;definimos o registrador 20 como dezena (variÃ¡vel que vai armazenar o valor numÃ©rico a ser exibido no display de dezena)
 .def temp = r16
 .def saida = r21
 .def loopCt = r17
@@ -7,24 +7,19 @@
 .def timerTmp = r25
 
 .cseg 				;flash
-
-;Definição do vetor de interrupção
-;Minuto 6:01 do vídeo
 jmp reset
 .org OC1Aaddr
 jmp OCI1A_Interrupt
 
-;Todo match é um overflow, e a partir disso a interrupção é gerada
-;tarefa da interrupção (ISR) - Funciona salvando o SREG, restaurando o SREG e retorna para a rotina principal com RETI
 
 OCI1A_Interrupt:
 	push r25
 	in r25, SREG
 	push r25
 
-	;Decremento no tempo do estado atual a cada interrupção de 1s
+	;tarefa da interrupÃ§Ã£o 
 	dec tempo_estado
-	; A cada interrupção aumentamos o valor a ser exibido no display de unidade em 1
+	; A cada interrupÃ§Ã£o aumentamos o valor a ser exibido no display de unidade em 1
 	inc unidade
 
 	pop r25
@@ -83,176 +78,163 @@ reset:
 	;Valor do prescale (256) 
 	.equ PRESCALE = 0b100 
 	.equ PRESCALE_DIV = 256
-	;Gerador de forma de onda CTC (Clear time and compare, modo 4)
-	.equ WGM = 0b0100 ;
-	;Condição para analisar se o top não ultrapassa o valor máxido de 65535
+	.equ WGM = 0b0100 ;Waveform generation mode: CTC
+	;CondiÃ§Ã£o para analisar se o top nÃ£o ultrapassa o valor mÃ¡xido de 65535
 	.equ TOP = int(0.5 + ((CLOCK/PRESCALE_DIV)*DELAY))
 	.if TOP > 65535
 	.error "TOP is out of range"
 	.endif
 
-	;Configuração do TOP - Carrega o valor do TOP em OCR1A 16 bit
-
-	;Alocando os bits mais significativos 
-	ldi timerTmp, high(TOP)  
+	ldi timerTmp, high(TOP) ;initialize compare value (TOP)
 	sts OCR1AH, timerTmp
-
-	;Alocando os bits menos significativos 
 	ldi timerTmp, low(TOP)
 	sts OCR1AL, timerTmp
-
-	;O WGM é responsável pelo modo de operação do timer (Modo 0, modo 4, etc)
-	;Configuração do WGM - Coloca o valor de WGM no TCCR1A e TCCR1B
-	ldi timerTmp, ((WGM&0b11) << WGM10) ;Carrega os 2 bits menos significativos
+	ldi timerTmp, ((WGM&0b11) << WGM10)
 	sts TCCR1A, timerTmp
-	ldi timerTmp, ((WGM>> 2) << WGM12)|(PRESCALE << CS10) ;Carrega os 2 bits mais significativos
-	;Inicia o counter
-	sts TCCR1B, timerTmp
+	ldi timerTmp, ((WGM>> 2) << WGM12)|(PRESCALE << CS10)
+	sts TCCR1B, timerTmp ;start counter
 
-	;Habilita interrupções do comparador no canal A (Interrupção específica)
-	;Minuto 4:07 do vídeo
-	lds r25, TIMSK1
-	;SBR Faz a troca do bit, sem alterar os outros bits
-	sbr r25, 1 <<OCIE1A
-	sts TIMSK1, r25
+	lds timerTmp, TIMSK1
+	sbr timerTmp, 1 <<OCIE1A
+	sts TIMSK1, timerTmp
 	;------FIM SETUP TIMER------
 
 	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
 	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
-	;Definimos toda a PORTD como saída
+	;Definimos toda a PORTD como saÃ­da
 	ldi temp, 0b11111111
 	out DDRD, temp
 
-	;Definimos os 6 primeiros pinos de PORTB como saída
+	;Definimos os 6 primeiros pinos de PORTB como saÃ­da
 	ldi temp, 0b00111111
 	out DDRB, temp	
 	
-	;habilita as interrupçoes globais
+	;habilita as interrupÃ§oes globais
 	sei
 	
 
-	s1:
-		ldi tempo_estado, 22
-		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+s1:
+	ldi tempo_estado, 22
+	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+
+
+loop_s1:
+	ldi	saida, estado_s1
+	out PORTD, saida
+
+	;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+	out PORTB, unidade
+	rcall Delay
+	out PORTB, dezena
+	rcall Delay
+	cpi tempo_estado, 0
+	breq s2
+	rjmp loop_s1
+s2:
+	ldi tempo_estado, 4
+	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+loop_s2:
+	ldi	saida, estado_s2
+	out PORTD, saida
 	
+	;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+	out PORTB, unidade
+	rcall Delay
+	out PORTB, dezena
+	rcall Delay
 
-	loop_s1:
-		ldi	saida, estado_s1
-		out PORTD, saida
+	cpi tempo_estado, 0
+	breq s3
+	rjmp loop_s2
+s3:
+	ldi tempo_estado, 51
+	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
 
-		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
-		out PORTB, unidade
-		rcall Delay
-		out PORTB, dezena
-		rcall Delay
-		cpi tempo_estado, 0
-		breq s2
-		rjmp loop_s1
-	s2:
-		ldi tempo_estado, 4
-		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
-	loop_s2:
-		ldi	saida, estado_s2
-		out PORTD, saida
-		
-		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
-		out PORTB, unidade
-		rcall Delay
-		out PORTB, dezena
-		rcall Delay
+loop_s3:
+	ldi	saida, estado_s3
+	out PORTD, saida
+	
+	;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+	out PORTB, unidade
+	rcall Delay
+	out PORTB, dezena
+	rcall Delay
 
-		cpi tempo_estado, 0
-		breq s3
-		rjmp loop_s2
-	s3:
-		ldi tempo_estado, 51
-		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+	cpi tempo_estado, 0
+	breq s4
+	rjmp loop_s3
+s4:
+	ldi tempo_estado, 4
+	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
 
-	loop_s3:
-		ldi	saida, estado_s3
-		out PORTD, saida
-		
-		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
-		out PORTB, unidade
-		rcall Delay
-		out PORTB, dezena
-		rcall Delay
+loop_s4:
+	ldi	saida, estado_s4
+	out PORTD, saida
+	
+	;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+	out PORTB, unidade
+	rcall Delay
+	out PORTB, dezena
+	rcall Delay
 
-		cpi tempo_estado, 0
-		breq s4
-		rjmp loop_s3
-	s4:
-		ldi tempo_estado, 4
-		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+	cpi tempo_estado, 0
+	breq s5
+	rjmp loop_s4
+s5:
+	ldi tempo_estado, 25
+	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
 
-	loop_s4:
-		ldi	saida, estado_s4
-		out PORTD, saida
-		
-		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
-		out PORTB, unidade
-		rcall Delay
-		out PORTB, dezena
-		rcall Delay
+loop_s5:
+	ldi	saida, estado_s5
+	out PORTD, saida
+	
+	;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+	out PORTB, unidade
+	rcall Delay
+	out PORTB, dezena
+	rcall Delay
 
-		cpi tempo_estado, 0
-		breq s5
-		rjmp loop_s4
-	s5:
-		ldi tempo_estado, 25
-		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+	cpi tempo_estado, 0
+	breq s6
+	rjmp loop_s5
+s6:
+	ldi tempo_estado, 4
+	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+loop_s6:
+	ldi	saida, estado_s6
+	out PORTD, saida
+	
+	;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+	out PORTB, unidade
+	rcall Delay
+	out PORTB, dezena
+	rcall Delay
 
-	loop_s5:
-		ldi	saida, estado_s5
-		out PORTD, saida
-		
-		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
-		out PORTB, unidade
-		rcall Delay
-		out PORTB, dezena
-		rcall Delay
+	cpi tempo_estado, 0
+	breq s7
+	rjmp loop_s6
+s7:
+	ldi tempo_estado, 31
+	ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
+	ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
+loop_s7:
+	ldi	saida, estado_s7
+	out PORTD, saida
 
-		cpi tempo_estado, 0
-		breq s6
-		rjmp loop_s5
-	s6:
-		ldi tempo_estado, 4
-		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
-	loop_s6:
-		ldi	saida, estado_s6
-		out PORTD, saida
-		
-		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
-		out PORTB, unidade
-		rcall Delay
-		out PORTB, dezena
-		rcall Delay
+	;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
+	out PORTB, unidade
+	rcall Delay
+	out PORTB, dezena
+	rcall Delay
 
-		cpi tempo_estado, 0
-		breq s7
-		rjmp loop_s6
-	s7:
-		ldi tempo_estado, 31
-		ldi unidade, 0b00100000; iniciamos o valor da unidade do contador em 0
-		ldi dezena,  0b00010000 ; iniciamos o valor da dezena do contador em 0
-	loop_s7:
-		ldi	saida, estado_s7
-		out PORTD, saida
-
-		;Enviamos os vetores de controle para os 2 displays com delay de 0.001 segundos 
-		out PORTB, unidade
-		rcall Delay
-		out PORTB, dezena
-		rcall Delay
-
-		cpi tempo_estado, 0
-		breq reincia
-		rjmp loop_s7
+	cpi tempo_estado, 0
+	breq reincia
+	rjmp loop_s7
 reincia:
 	rjmp s1
