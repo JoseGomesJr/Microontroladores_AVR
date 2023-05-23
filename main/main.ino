@@ -1,3 +1,10 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+
+LiquidCrystal_I2C lcd(0x27, 16, 2);  // Endereço I2C do display e configuração do tamanho
+
+
 int motor_l = 6;
 int motor_r = 5;
 int val_r = 90;   
@@ -12,6 +19,14 @@ int sensor_left = A3;
 
 void setup() {
   Serial.begin(9600);
+
+  //Configurações do display
+  lcd.begin(16, 2);
+  lcd.clear();
+  lcd.print("Tensao (V) - Motor1:");
+  lcd.setCursor(0, 1);
+  lcd.print("Tensao (V) - Motor2:");
+
 
   pinMode(motor_l, OUTPUT);  // configura pino como saída
   pinMode(motor_r, OUTPUT);  // configura pino como saída
@@ -64,6 +79,27 @@ void sensor_read( int sensor_right, int sensor_left )
   val_r = 90;
 }
 
+void exibir_display() {
+  int valorPWM1 = analogRead(sensor_left);  // Leitura do valor PWM para o motor esquerdo  
+  int valorPWM2 = analogRead(sensor_right);  // Leitura do valor PWM para o motor direito 
+  
+  float tensao1 = (valorPWM1 / 1023.0) * 5.0;  // Cálculo da tensão para o motor esquerdo
+  float tensao2 = (valorPWM2 / 1023.0) * 5.0;  // Cálculo da tensão para o motor direito
+  
+  // Atualiza os valores no display
+  lcd.setCursor(14, 0);
+  lcd.print("    ");  // Limpa o espaço anterior
+  lcd.setCursor(14, 0);
+  lcd.print(tensao1, 2);  // Exibe a tensão do motor esquerdo  
+  
+  lcd.setCursor(14, 1);
+  lcd.print("    ");  // Limpa o espaço anterior
+  lcd.setCursor(14, 1);
+  lcd.print(tensao2, 2);  // Exibe a tensão do motor direito  
+  
+  delay(500);  // Aguarda 500ms antes de atualizar novamente
+}
+
 void loop() {
 
   int leitura_r = analogRead(sensor_right);
@@ -83,4 +119,6 @@ void loop() {
   Serial.println( val_l);
   Serial.print("Potencia da direita: ");
   Serial.println(val_r);
+
+  exibir_display();
 }
